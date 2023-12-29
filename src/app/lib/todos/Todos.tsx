@@ -7,7 +7,6 @@ function Todos() {
     const dispatch = useDispatch()
     return (
         <>
-            <div>Todos</div>
             <ul className="list-none flex flex-col justify-center items-center">
                 {todos.map((todo: any) => (
                     <li
