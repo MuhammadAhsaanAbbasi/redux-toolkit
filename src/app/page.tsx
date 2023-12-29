@@ -1,22 +1,42 @@
-"use client"
-import { useEffect, useState } from 'react'
-import Addtodo from "./lib/todos/Addtodo"
-import Todos from './lib/todos/Todos'
+"use client";
+import { useEffect, useState } from "react";
+import Addtodo from "./lib/todos/Addtodo";
+import Todos from "./lib/todos/Todos";
+import { ThemeProvider } from "./component/themeContent/Themecontent";
+import ThemeBtn from "./component/themebtn/themebtn";
 
 const Home = () => {
-  
+    const [themeMode, setthemeMode] = useState("light")
+  const lightMode=()=>{
+    setthemeMode("light")
+  }
+  const darkMode=()=>{
+    setthemeMode("dark")
+  }
+  useEffect(()=>{
+    document.querySelector("html")?.classList.remove("light","dark")
+    document.querySelector("html")?.classList.add(themeMode)
+  },[themeMode])
   return (
     <>
-    <div className='block m-auto bg-slate-200 py-6 my-4 w-5/12 rounded-xl'>
-    <h2 className='px-8 text-4xl font-semibold text-zinc-700'>Todo List</h2>
-    <Addtodo/>
-    <Todos/>
-    </div>
-    </>
-  )
-}
+      <ThemeProvider value={{ themeMode, lightMode, darkMode }} >
+      <div className="block m-auto bg-slate-200 py-6 my-4 w-5/12 rounded-xl dark:bg-black transition-all duration-500">
+        <div className="flex items-center justify-between flex-row mx-5">
+            <h2 className="px-8 text-4xl font-semibold text-zinc-700 dark:text-white">Todo List</h2>
+            <div className="flex justify-start mx-4">
+              <ThemeBtn />
+            </div>
+        </div>
+        <Addtodo />
+        <Todos />
+      </div>
+      </ThemeProvider>
 
-export default Home
+    </>
+  );
+};
+
+export default Home;
 
 // const Home = () => {
 //   const {push, back, } = useRouter()
@@ -39,65 +59,62 @@ export default Home
 
 // export default Home
 
-
-
 // Context Api Todo App
 
-  // const [todos,setTodos] = useState<any>([])
-  
-  // const addTodo =(todo:any)=>{
-  //   setTodos((prevTodo:any)=>[{id:Math.floor(Math.random()*9999999999),...todo},...prevTodo])
-  // }
+// const [todos,setTodos] = useState<any>([])
 
-  // const UpdateTodo = (id:number,todo:any) =>{
-  //   setTodos((prev:any)=>prev.map((prevTodo:any)=>(prevTodo.id===id?todo:prevTodo)))
-  // }
+// const addTodo =(todo:any)=>{
+//   setTodos((prevTodo:any)=>[{id:Math.floor(Math.random()*9999999999),...todo},...prevTodo])
+// }
 
-  // const DeleteTodo = (id:number) =>{
-  //   setTodos((prev:any)=>prev.filter((Todo:any)=>(Todo.id!==id)))
-  // }
+// const UpdateTodo = (id:number,todo:any) =>{
+//   setTodos((prev:any)=>prev.map((prevTodo:any)=>(prevTodo.id===id?todo:prevTodo)))
+// }
 
-  // const toggleComplete = (id:number) =>{
-  //   setTodos((prev:any)=>prev.map((prevTodo:any)=>(prevTodo.id===id?{...prevTodo,completed:!prevTodo.completed}:prevTodo)))
-  // }
+// const DeleteTodo = (id:number) =>{
+//   setTodos((prev:any)=>prev.filter((Todo:any)=>(Todo.id!==id)))
+// }
 
-  // useEffect(()=>{
-  //   const storedData = localStorage.getItem("todos");
-  //   const todos = storedData ? JSON.parse(storedData) : [];
-  //   if(todos&&todos.length>0){
-  //     setTodos(todos)
-  //   }
-  // },[])
+// const toggleComplete = (id:number) =>{
+//   setTodos((prev:any)=>prev.map((prevTodo:any)=>(prevTodo.id===id?{...prevTodo,completed:!prevTodo.completed}:prevTodo)))
+// }
 
-  // useEffect(()=>{
-  //   (localStorage.setItem("todos",JSON.stringify(todos)))
-  //   if(todos&&todos.length>0){
-  //     setTodos(todos)
-  //   }
-  // },[todos])
+// useEffect(()=>{
+//   const storedData = localStorage.getItem("todos");
+//   const todos = storedData ? JSON.parse(storedData) : [];
+//   if(todos&&todos.length>0){
+//     setTodos(todos)
+//   }
+// },[])
 
-  // return (
-  //   <TodoProvider value={{todos,addTodo,UpdateTodo,DeleteTodo,toggleComplete}}>
-  //     <div className="bg-[#172842] min-h-screen py-8">
-  //               <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
-  //                   <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
-  //                   <div className="mb-4">
-  //                       {/* Todo form goes here */} 
-  //                       <TodoForm/>
-  //                   </div>
-  //                   <div className="flex flex-wrap gap-y-3">
-  //                       {/*Loop and Add TodoItem here */}
-  //                       {todos.map((todo:any)=>(
-  //                         <div key={todo.id}>
-  //                           <TodoItem todo={todo}/>
-  //                         </div>
-  //                       ))}
-  //                   </div>
-  //               </div>
-  //           </div>
-  //   </TodoProvider>
-  // )
+// useEffect(()=>{
+//   (localStorage.setItem("todos",JSON.stringify(todos)))
+//   if(todos&&todos.length>0){
+//     setTodos(todos)
+//   }
+// },[todos])
 
+// return (
+//   <TodoProvider value={{todos,addTodo,UpdateTodo,DeleteTodo,toggleComplete}}>
+//     <div className="bg-[#172842] min-h-screen py-8">
+//               <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
+//                   <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
+//                   <div className="mb-4">
+//                       {/* Todo form goes here */}
+//                       <TodoForm/>
+//                   </div>
+//                   <div className="flex flex-wrap gap-y-3">
+//                       {/*Loop and Add TodoItem here */}
+//                       {todos.map((todo:any)=>(
+//                         <div key={todo.id}>
+//                           <TodoItem todo={todo}/>
+//                         </div>
+//                       ))}
+//                   </div>
+//               </div>
+//           </div>
+//   </TodoProvider>
+// )
 
 // export default function Home() {
 //   const [themeMode, setthemeMode] = useState("light")

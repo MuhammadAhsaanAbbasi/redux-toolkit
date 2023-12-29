@@ -10,10 +10,10 @@ function Todos() {
             <ul className="list-none flex flex-col justify-center items-center">
                 {todos.map((todo: any) => (
                     <li
-                        className={`mt-4 flex justify-between items-center ${todo.text?"bg-zinc-800":"hidden"} px-4 py-2 rounded w-11/12 `}
+                        className={`mt-4 flex justify-between items-center ${todo.text?"bg-zinc-600":"hidden"} px-4 py-2 rounded w-11/12 `}
                         key={todo.id}
                     >
-                        <div className='text-white' key={todo.id}>{todo.text}</div>
+                        <div className='text-white text-lg' key={todo.id}>{todo.text}</div>
                         <button
                             onClick={() => dispatch(removeTodo(todo.id))}
                             className={`text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md`} 
