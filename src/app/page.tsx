@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react'
-import Addtodo from "./component/todos/Addtodo"
-import Todos from './component/todos/Todos'
+import Addtodo from "./lib/todos/Addtodo"
+import Todos from './lib/todos/Todos'
 
 const Home = () => {
   return (
