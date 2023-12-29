@@ -7,8 +7,11 @@ const Home = () => {
   
   return (
     <>
+    <div className='block m-auto bg-slate-200 py-6 my-4 w-5/12 rounded-xl'>
+    <h2 className='px-8 text-4xl font-semibold text-zinc-700'>Todo List</h2>
     <Addtodo/>
     <Todos/>
+    </div>
     </>
   )
 }
