@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`dark:bg-gray-700 ${inter.className} font-["poppins"]`}>
+      <body className={`dark:bg-gray-700 ${inter.className} font-["poppins"] transition-all duration-500`}>
         <StoreProvider>
         {children}
         </StoreProvider>
